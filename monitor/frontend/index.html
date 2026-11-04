@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>NGINX+ - Dashboard</title>
+    
+    <style>
+        body { 
+            font-family: monospace; 
+            background: #1e1e1e; 
+            color: #d4d4d4; 
+            padding: 20px; 
+            margin: 0;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #000;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 900;
+            color: #4CAF50;
+            letter-spacing: -1px;
+        }
+        
+        .logo h1 span {
+            color: #fff;
+        }
+        
+        .abas {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .abas h2 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+        
+        .abas h2:hover {
+            color: #fff;
+        }
+        
+        .abas h2.ativo {
+            color: #fff;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .log-entry { 
+            border-bottom: 1px solid #333; 
+            padding: 10px 0; 
+        }
+        .status-200 { color: #4CAF50; font-weight: bold; }
+        .status-404 { color: #F44336; font-weight: bold; }
+        .ip { color: #569CD6; }
+        .rota { color: #CE9178; }
+        
+        #logs { 
+            background: #000; 
+            padding: 15px; 
+            border-radius: 5px; 
+            height: 500px; 
+            overflow-y: auto; 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>NGINX<span>+</span></h1>
+        </div>
+        <div class="abas">
+            <a href="./index.html"><h2 class="ativo">Dashboard</h2></a>
+            <a href="./monitor-logs.html"><h2>Monitor de Logs</h2></a>
+            <h2>Buscar</h2>
+            <h2>Alertas e Anomalias</h2>
+            <h2>Métricas de API</h2>
+        </div>
+    </nav>
+
+    <h2 style="font-family: Arial, sans-serif; margin-bottom: 15px;">Dashboard</h2>
+    
+</body>
+</html>

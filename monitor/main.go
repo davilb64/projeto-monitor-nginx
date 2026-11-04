@@ -96,12 +96,12 @@ func obterCaminhoLog() string {
 
 	for _, caminho := range caminhosComuns {
 		if _, err := os.Stat(caminho); err == nil {
-			fmt.Printf("[\u2713] NGINX detectado! Lendo log de: %s\n", caminho)
+			fmt.Printf("[\u2713] NGINX encontrado, lendo log de: %s\n", caminho)
 			return caminho
 		}
 	}
 
-	fmt.Println("[!] Log não encontrado automaticamente. Abrindo seletor...")
+	fmt.Println("Log não encontrado automaticamente.")
 	caminhoEscolhido, err := zenity.SelectFile(zenity.Title("Selecione o arquivo access.log"))
 	if err != nil {
 		fmt.Println("Operação cancelada.")
@@ -123,7 +123,6 @@ func streamDeDados(w http.ResponseWriter, r *http.Request, caminhoArquivo string
 		return
 	}
 
-	// 1. Abre o arquivo toda vez que o navegador conecta
 	file, err := os.Open(caminhoArquivo)
 	if err != nil {
 		fmt.Println("Erro ao ler o log:", err)
@@ -131,7 +130,6 @@ func streamDeDados(w http.ResponseWriter, r *http.Request, caminhoArquivo string
 	}
 	defer file.Close()
 
-	// 2. Lê desde a primeira linha (Removemos o file.Seek que pulava pro final)
 	reader := bufio.NewReader(file)
 	for {
 		linha, err := reader.ReadString('\n')
@@ -169,10 +167,10 @@ func main() {
 		streamDeDados(w, r, caminhoDoLog)
 	})
 
-	http.Handle("/", http.FileServer(http.Dir("./public")))
+	http.Handle("/", http.FileServer(http.Dir("./frontend")))
 
-	fmt.Println("Monitor rodando perfeitamente!")
-	fmt.Println("Acesse o painel em: http://localhost:9090")
+	fmt.Println("Monitor rodando!")
+	fmt.Println("Acesse em: http://localhost:9090")
 	if err := http.ListenAndServe(":9090", nil); err != nil {
 		fmt.Println("Erro ao iniciar servidor:", err)
 	}
